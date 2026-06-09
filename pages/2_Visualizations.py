@@ -17,7 +17,7 @@ is that the resulting line of best fit is a first order equation. I ran my model
 the last step, and the output can be seen below.         
 ''')
 
-df = pd.read_csv('tech_salary_dataset.csv')
+df = pd.read_csv('data/tech_salary_dataset.csv')
 df = df[df['currency']=='USD']
 important_columns = df[['skills', 'annual_net_salary_usd', 'experience_years_total', 'location', 'education_level', 'primary_tech_field', 'company_size']]
 important_columns = important_columns.reset_index(drop=True)
@@ -92,6 +92,7 @@ fig, ax = plt.subplots()
 controlled_factors.tail(10).plot(kind='barh', ax=ax, title='Bottom 10 Factors vs Correlated Increase in Salary')
 ax.set_xlabel('USD')
 ax.set_ylabel('Factor')
+st.pyplot(fig)
 
 st.markdown('## Common Skills')
 st.markdown('''

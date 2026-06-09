@@ -14,7 +14,7 @@ The original DataFrame, or df, was sourced from kaggle, and had 10,000 rows and 
 values for each column. This was too much data for my project, and some of the columns were correlated with each other. You can see the first 10 rows 
 of my data below.
 ''')
-st.image('pictures/original_df.png')
+st.image('img/original_df.png')
 st.markdown('## Data Transformation')
 st.markdown(
 '''
@@ -28,7 +28,7 @@ that they work for and is an ordinal categorical variable. Skills is a list of e
 the annual_net_salary_usd column is a continuous numerical variable that describes each person's monetary, net salary that they are given as compensation
 After filtering, I was left with my new `important_columns` df which looked like this.
 ''')
-st.image('pictures/filtered_df.png')
+st.image('img/filtered_df.png')
 st.markdown(
 '''
 After filtering all my data, I wanted to address the skills column. It was one long string with each skill a person had separated by a `;` and a space.
@@ -37,7 +37,7 @@ to create new columns with each of the skill names. I found that there was an ex
 `skills.columns = skills.columns.str.strip()` and `skills = skills.groupby(skills.columns, axis=1).max()` to take out the space and group the column names together. Now I had
 a skills dataframe that looked like this.
 ''')
-st.image('pictures/skills_df.png')
+st.image('img/skills_df.png')
 st.markdown('''
 This looks scary, but the number of rows matches the number of rows in my filtered df, so if I have to concatenate them, they share an axis with the same size so everything
 will work out fine. 
@@ -50,4 +50,7 @@ Lastly, I had to create dummy variables for each of the columns that had categor
 variables into dummy variables, so I ran `dummy = pd.get_dummies(df_clean[['experience_years_total', 'location', 'education_level', 'primary_tech_field', 'company_size']], drop_first=True, dtype=int)` keeping
 the years of experience in the new dummy df so that I had all variables that I needed. I then reset both dummy and skills' indices and concatenated them. This was the last step in my
 data cleaning.
+
+An important note is when creating these dummy variables, I had to remove one category to prevent perfect multicollinearity. This means that each coefficient is the associated pay bump with the removed category as the baseline.
+For location, the baseline was Austin, education level was associate's degree, primary tech field was backend development, and company size was enterprise(1000+).
 ''')

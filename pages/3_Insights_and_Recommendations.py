@@ -28,7 +28,7 @@ that are widely taught and have free documentation and lessons online. Furthermo
 even if these skills are not primarily used in one's role, they can be incorporated
 as needed as **force multipliers**.
 
-On the same track, my common skills table that was shown in the last page shows that 
+In the same vein, my common skills table that was shown in the last page shows that 
 some helpful skills to learn can be categorized as application development, infrastructure and DevOps,
 data analytics, and collaboration and process skills. In my data, these skills were either common,
 yielded high pay, or both.
