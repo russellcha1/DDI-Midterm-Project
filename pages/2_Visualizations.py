@@ -23,7 +23,7 @@ important_columns = df[['skills', 'annual_net_salary_usd', 'experience_years_tot
 important_columns = important_columns.reset_index(drop=True)
 skills = important_columns['skills'].str.get_dummies(';')
 skills.columns = skills.columns.str.strip()
-skills = skills.groupby(skills.columns, axis=1).max()
+skills = skills.T.groupby(level=0).max().T
 columns_to_check = ['experience_years_total', 'location', 'education_level', 'primary_tech_field', 'company_size', 'annual_net_salary_usd']
 df_clean = df.dropna(subset=columns_to_check).copy()
 df_clean = df_clean.reset_index(drop=True)
