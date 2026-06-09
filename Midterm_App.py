@@ -1,0 +1,21 @@
+import streamlit as st
+import pandas as pd
+from sklearn.linear_model import LinearRegression
+import matplotlib.pyplot as plt
+
+st.set_page_config(page_title='Tech Salary Analysis', layout='wide')
+st.write('# Tech Salary Analysis')
+st.markdown(
+'''
+## Introduction
+
+The question that I aimed to answer in this project was, "Which skills are correlated with the highest increases in salary in
+the civilian sector?" The answer that I found gives insights into what skills employers find important, and the same goes for
+the military. I faced this project taking a two-pronged approach for military members- how to best improve skills that the military
+needs, and what to start thinking about to be marketable if a member is transitioning out of the military. As the country faces 
+pacing threats and new conflict, there is no better time for military members to be at their best. This goes for anyone, including
+those who work in tech fields. Thus, my goal was to provide information about how military members can start to improve their skills
+in order to find the most benefit for their units and themselves. My findings show a framework for how military members should start
+thinking about their careers, but should absolutely not be taken as sound career advice or recommendation.
+'''
+)
