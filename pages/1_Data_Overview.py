@@ -14,7 +14,7 @@ The original DataFrame, or df, was sourced from kaggle, and had 10,000 rows and 
 values for each column. This was too much data for my project, and some of the columns were correlated with each other. You can see the first 10 rows 
 of my data below.
 ''')
-st.image('original_df.png')
+st.image('pictures/original_df.png')
 st.markdown('## Data Transformation')
 st.markdown(
 '''
@@ -28,7 +28,7 @@ that they work for and is an ordinal categorical variable. Skills is a list of e
 the annual_net_salary_usd column is a continuous numerical variable that describes each person's monetary, net salary that they are given as compensation
 After filtering, I was left with my new `important_columns` df which looked like this.
 ''')
-st.image('filtered_df.png')
+st.image('pictures/filtered_df.png')
 st.markdown(
 '''
 After filtering all my data, I wanted to address the skills column. It was one long string with each skill a person had separated by a `;` and a space.
@@ -37,7 +37,7 @@ to create new columns with each of the skill names. I found that there was an ex
 `skills.columns = skills.columns.str.strip()` and `skills = skills.groupby(skills.columns, axis=1).max()` to take out the space and group the column names together. Now I had
 a skills dataframe that looked like this.
 ''')
-st.image('skills_df.png')
+st.image('pictures/skills_df.png')
 st.markdown('''
 This looks scary, but the number of rows matches the number of rows in my filtered df, so if I have to concatenate them, they share an axis with the same size so everything
 will work out fine. 
