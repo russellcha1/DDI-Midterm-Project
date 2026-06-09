@@ -70,3 +70,7 @@ In the future, I would like to explore three avenues: incorporating all compensa
 2. A way to see how well my model can predict one's annual compensation would be to test my model. This involves splitting the data I feed into the model into training and testing groups. The linear regression would work just the same, using the training rows of data to make coefficients, and then would be tested using the test data to see if the coefficients that were yielded from the training data can predict the test data's annual compensation well.
 
 3. Lastly, I would like to explore using different regression models for my data. Linear regression is a very simple form of modeling data, and has limitations. Other models have different limitations, but also different benefits. In the future, I would like to explore what these other models could tell me about the data and may lead to better prediction.
+
+## Interactive README
+
+An interactive version of this README file can be found at 
