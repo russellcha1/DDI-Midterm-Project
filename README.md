@@ -21,6 +21,9 @@ This looks scary, but the number of rows matches the number of rows in my filter
 
 Lastly, I had to create dummy variables for each of the columns that had categorical data. I know that the `get_dummies` command is smart and will not convert continuous variables into dummy variables, so I ran `dummy = pd.get_dummies(df_clean[['experience_years_total', 'location', 'education_level', 'primary_tech_field', 'company_size']], drop_first=True, dtype=int)` keeping the years of experience in the new dummy df so that I had all variables that I needed. I then reset both dummy and skills' indices and concatenated them. This was the last step in my data cleaning.
 
+
+An important note is when creating these dummy variables, I had to remove one category to prevent perfect multicollinearity. This means that each coefficient is the associated pay bump with the removed category as the baseline. For location, the baseline was Austin, education level was associate's degree, primary tech field was backend development, and company size was enterprise(1000+).
+
 ## Visualizations
 
 In order to see how each variable affects the annual salary of each person, I ran a linear regression on all the columns against the annual salary. A linear regression is a simple regression model that predicts the dependent variable based on one or more dependent variables. The reason it is called a linear regression is that the resulting line of best fit is a first order equation. I ran my model with the columns that I kept from the last step, and the output can be seen below.
