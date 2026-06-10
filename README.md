@@ -73,4 +73,4 @@ In the future, I would like to explore three avenues: incorporating all compensa
 
 ## Interactive README
 
-An interactive version of this README file can be found at 
+An interactive version of this README file can be found here: [Tech Salary App](https://midtermtechsalarymodel.streamlit.app)
