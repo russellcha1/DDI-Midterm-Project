@@ -7,15 +7,15 @@ The question that I aimed to answer in this project was, "Which skills are corre
 ## Data
 The original DataFrame, or df, was sourced from kaggle, and had 10,000 rows and 50 columns. Each row represents one person and their corresponding values for each column. This was too much data for my project, and some of the columns were correlated with each other. You can see the first 10 rows of my data below.
 
-![First 10 lines of my original df](pictures/original_df.png)
+![First 10 lines of my original df](img/original_df.png)
 
 The first thing I did was filter out jobs that did not pay in US Dollars. I did this using `df = df[df['currency']=='USD']`. I then addressed the number of columns in the df. The original was too large to display in jupyter notebook, so I used `df.columns` to see all the column names. After seeing all of them, I only kept 'skills', 'annual_net_salary_usd', 'experience_years_total', 'location', 'education_level', 'primary_tech_field', and 'company_size'. Going through each of the columns I kept, experience_years_total is the years of experience each person has, and it is a continuous numerical variable. The location column is the location of each person's work, and is a nominal categorical variable. The column education_level is an ordinal categorical variable that describes the highest level of education a person achieved. The primary_tech_field column is a nominal categorical variable that is the tech field that each person works in. The company_size variable describes the size of each person's company that they work for and is an ordinal categorical variable. Skills is a list of each skills each person has and is a nominal categorical value which I converted into a binary dummy variable in later steps. Lastly, the annual_net_salary_usd column is a continuous numerical variable that describes each person's monetary, net salary that they are given as compensation After filtering, I was left with my new `important_columns` df which looked like this.
 
-![First 10 lines of filtered df](pictures/filtered_df.png)
+![First 10 lines of filtered df](img/filtered_df.png)
 
 After filtering all my data, I wanted to address the skills column. It was one long string with each skill a person had separated by a `;` and a space. In order for me to be able to run a regression on this column, I needed to create dummy variables, so I used `skills = important_columns['skills'].str.get_dummies(';')` to create new columns with each of the skill names. I found that there was an exact copy of column names because I forgot to filter the space after each semicolon, so I used `skills.columns = skills.columns.str.strip()` and `skills = skills.groupby(skills.columns, axis=1).max()` to take out the space and group the column names together. Now I had a skills dataframe that looked like this.
 
-![First 10 lines of skills df](pictures/skills_df.png)
+![First 10 lines of skills df](img/skills_df.png)
 
 This looks scary, but the number of rows matches the number of rows in my filtered df, so if I have to concatenate them, they share an axis with the same size so everything will work out fine. 
 
@@ -28,13 +28,13 @@ An important note is when creating these dummy variables, I had to remove one ca
 
 In order to see how each variable affects the annual salary of each person, I ran a linear regression on all the columns against the annual salary. A linear regression is a simple regression model that predicts the dependent variable based on one or more dependent variables. The reason it is called a linear regression is that the resulting line of best fit is a first order equation. I ran my model with the columns that I kept from the last step, and the output can be seen below.
 
-![Factor coefficients](pictures/controlled.png)
+![Factor coefficients](img/controlled.png)
 
 This output is exactly what I wanted, so I split the skill factors and the non skill factors. I graphed the top and bottom 10 skill factors first which can be seen below.
 
 ### Graphs
-![Top 10 Skills](pictures/Skill_Salary_Inc.png)
-![Bottom 10 Skills](pictures/Skill_Salary_Dec.png)
+![Top 10 Skills](img/Skill_Salary_Inc.png)
+![Bottom 10 Skills](img/Skill_Salary_Dec.png)
 
 Here, we can see the top 10 skills that are correlated with the highest increases in pay within the df. Smart Contracts, ethers.js, and Hardhat are associated with blockchain and web3 development. Blender and Shader Programming are associated with 3D graphics. TestRail is for testing and quality assurance. C and Matlab are used for technical computing to include analysis and simulations. And Airflow and Snowflake are used for data engineering and infrastructure.
 
@@ -46,12 +46,12 @@ It is important to note that these skills do not _cause_ higher or lower salarie
 
 After seeing the results of the skills, I wanted to see how other factors held up when seeing the correlated salary increases or decreases. So, I plotted the top and bottom 10 factors excluding skills which can be seen below.
 
-![Top 10 Factors](pictures/Factor_Inc.png)
-![Bottom 10 Factors](pictures/Factor_Dec.png)
+![Top 10 Factors](img/Factor_Inc.png)
+![Bottom 10 Factors](img/Factor_Dec.png)
 
 Knowing which skills and factors yield the highest correlated increases in salary are great. However, my graphs do not capture how common each skill is in the data. Highly specialized skills may lead to much higher pay, as the information surrounding them is esoteric, making the skill not very accessible to most. Therefore, I went through my dataframe and created a metric: how much the skill increases the salary multiplied by the number of times it shows up in the data. With this, I am able to figure out which skills are common and yield the highest correlated pay bumps. The output is shown below.
 
-![Common Skills](pictures/Common_Skills.png)
+![Common Skills](img/Common_Skills.png)
 
 ## Insights
 
